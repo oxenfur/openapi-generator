@@ -1,0 +1,187 @@
+/**
+ * Auto-generated file, DO NOT MODIFY.
+ */
+
+/* tslint:disable */
+/* eslint-disable */
+{{>licenseInfo}}
+
+import "reflect-metadata";
+import { NextFunction, Request, Response, Router } from "express";
+import { {{classname}}Implementation } from "../../.";
+import { Type } from "class-transformer";
+import { plainToInstance } from "class-transformer";
+import { IsOptional, IsString, IsBoolean, IsEmail, IsNumber, IsDate } from "class-validator";
+import { validationMiddleware } from "../common";
+{{#imports.0}}
+import type {
+  {{#imports}}
+  {{classname}},
+  {{/imports}}
+} from '../models';
+{{/imports.0}}
+
+const router = Router();
+
+{{#operations}}
+  {{#operation}}
+export type {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}OperationResponse =
+  {{#responses}}
+    {
+      code: {{code}},
+      response: {{#dataType}}{{{.}}}{{/dataType}}{{^dataType}}any{{/dataType}},
+    }{{^-last}} |{{/-last}}{{#-last}};{{/-last}}
+  {{/responses}}
+
+export interface {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}Response extends Response<
+  {{#responses}}
+    {{#dataType}}{{{.}}}{{/dataType}}{{^dataType}}any{{/dataType}}{{^-last}} |{{/-last}}
+  {{/responses}}
+> { };
+
+{{#pathParams.0}}
+class {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestPathParams {
+  {{#pathParams}}
+    {{#isString}}@IsString(){{/isString}}
+    {{#isNumber}}@IsNumber()@Type(() => Number){{/isNumber}}
+    {{#isBoolean}}@IsBoolean(){{/isBoolean}}
+    {{#isDate}}@IsDate(){{/isDate}}
+    {{#isEmail}}@IsEmail(){{/isEmail}}
+    {{^required}}@IsOptional(){{/required}}
+    {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
+  {{/pathParams}}
+}
+{{/pathParams.0}}
+
+{{#bodyParams.0}}
+class {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestBodyParams {
+  {{#vars}}
+    {{#isString}}@IsString(){{/isString}}
+    {{#isNumber}}@IsNumber()@Type(() => Number){{/isNumber}}
+    {{#isBoolean}}@IsBoolean(){{/isBoolean}}
+    {{#isDate}}@IsDate(){{/isDate}}
+    {{#isEmail}}@IsEmail(){{/isEmail}}
+    {{^required}}@IsOptional(){{/required}}
+    {{name}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
+  {{/vars}}
+}
+{{/bodyParams.0}}
+
+{{#queryParams.0}}
+class {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestQueryParams {
+  {{#queryParams}}
+    {{#isString}}@IsString(){{/isString}}
+    {{#isNumber}}@IsNumber()@Type(() => Number){{/isNumber}}
+    {{#isBoolean}}@IsBoolean(){{/isBoolean}}
+    {{#isDate}}@IsDate(){{/isDate}}
+    {{#isEmail}}@IsEmail(){{/isEmail}}
+    {{^required}}@IsOptional(){{/required}}
+    {{paramName}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
+  {{/queryParams}}
+}
+{{/queryParams.0}}
+
+export interface {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}Request extends Request<
+  // path params
+  {{#pathParams.0}}
+  {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestPathParams,
+  {{/pathParams.0}}
+  {{^pathParams.0}}
+  {},
+  {{/pathParams.0}}
+  // response body reference, should match response
+  {{#responses}}
+    {{#dataType}}{{{.}}}{{/dataType}}{{^dataType}}any{{/dataType}}{{^-last}} |{{/-last}}
+  {{/responses}},
+  // body params
+  {{#bodyParams.0}}
+  {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestBodyParams,
+  {{/bodyParams.0}}
+  {{^bodyParams.0}}
+  {},
+  {{/bodyParams.0}}
+  // query params
+  {{#queryParams.0}}
+  {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestQueryParams
+  {{/queryParams.0}}
+  {{^queryParams.0}}
+  {}
+  {{/queryParams.0}}
+> { };
+
+  {{/operation}}
+{{/operations}}
+
+
+{{#operations}}
+// Operations Begin
+{{#operation}}
+
+/**
+  {{#notes}}
+  * {{&notes}}
+  {{/notes}}
+  {{#summary}}
+  * {{&summary}}
+  {{/summary}}
+  */
+router.{{httpMethod}}(
+  `{{{path}}}`,
+  validationMiddleware({
+    body: {{#bodyParams.0}}{{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestBodyParams{{/bodyParams.0}}{{^bodyParams.0}}undefined{{/bodyParams.0}},
+    query: {{#queryParams.0}}{{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestQueryParams{{/queryParams.0}}{{^queryParams.0}}undefined{{/queryParams.0}},
+    params: {{#pathParams.0}}{{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestPathParams{{/pathParams.0}}{{^pathParams.0}}undefined{{/pathParams.0}}
+  }) as any,
+  async (request: {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}Request, response: {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}Response, next: NextFunction) => {
+    // set request to be typed correctly. eg if query string has a number parameter, coerce it to number
+    request.body = {{#bodyParams.0}}plainToInstance({{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestBodyParams, request.body){{/bodyParams.0}}{{^bodyParams.0}}request.body{{/bodyParams.0}};
+    request.query = {{#queryParams.0}}plainToInstance({{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestQueryParams, request.query){{/queryParams.0}}{{^queryParams.0}}request.query{{/queryParams.0}};
+    request.params = {{#pathParams.0}}plainToInstance({{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}RequestPathParams, request.params){{/pathParams.0}}{{^pathParams.0}}request.params{{/pathParams.0}};
+
+    const operationResponse: {{#prefixParameterInterfaces}}{{classname}}{{/prefixParameterInterfaces}}{{operationIdCamelCase}}OperationResponse  = await {{classname}}Implementation.{{operationIdCamelCase}}(request);
+    response.status(operationResponse.code).send(operationResponse.response);
+  }
+);
+
+{{/operation}}
+// Operations End
+{{/operations}}
+
+export { router as {{classname}}Router };
+
+{{#hasEnums}}
+{{#operations}}
+{{#operation}}
+{{#allParams}}
+{{#isEnum}}
+{{#stringEnums}}
+/**
+  * @export
+  * @enum {string}
+  */
+export enum {{operationIdCamelCase}}{{enumName}} {
+{{#allowableValues}}
+    {{#enumVars}}
+    {{{name}}} = {{{value}}}{{^-last}},{{/-last}}
+    {{/enumVars}}
+{{/allowableValues}}
+}
+{{/stringEnums}}
+{{^stringEnums}}
+/**
+ * @export
+ */
+export const {{operationIdCamelCase}}{{enumName}} = {
+{{#allowableValues}}
+    {{#enumVars}}
+    {{{name}}}: {{{value}}}{{^-last}},{{/-last}}
+    {{/enumVars}}
+{{/allowableValues}}
+} as const;
+export type {{operationIdCamelCase}}{{enumName}} = typeof {{operationIdCamelCase}}{{enumName}}[keyof typeof {{operationIdCamelCase}}{{enumName}}];
+{{/stringEnums}}
+{{/isEnum}}
+{{/allParams}}
+{{/operation}}
+{{/operations}}
+{{/hasEnums}}

@@ -1,0 +1,33 @@
+// Create new generator
+java -jar openapi-generator-cli.jar meta   -o out/generators/my-codegen -n my-codegen -p com.my.company.codegen
+
+// from repo root:
+1. cd out/generators/my-codegen
+2. mvn package
+
+//back from base
+
+java -cp out/generators/my-codegen/target/my-codegen-openapi-generator-1.0.0.jar:./openapi-generator-cli.jar \
+  org.openapitools.codegen.OpenAPIGenerator generate -g my-codegen \
+  -i https://raw.githubusercontent.com/openapitools/openapi-generator/master/modules/openapi-generator/src/test/resources/3_0/petstore.yaml \
+  -o ./out/myClient
+
+
+# Typescript fetch base:
+openapi-generator generate -g typescript-fetch -i ../yoga-flow-mono/apps/yoga-flow-backend/openapi.yaml -o ../yoga-flow-mono/apps/yoga-flow-backend/src/api/_delete/generated --skip-validate-spec --global-property debugModels > ~/test.txt
+
+
+# My Generator with PetStore
+
+java -cp out/generators/my-codegen/target/my-codegen-openapi-generator-1.0.0.jar:./openapi-generator-cli.jar \
+  org.openapitools.codegen.OpenAPIGenerator generate -g my-codegen \
+  -i https://raw.githubusercontent.com/openapitools/openapi-generator/master/modules/openapi-generator/src/test/resources/3_0/petstore.yaml \
+  -o ../typescript-nodejs-express-server/src/routes/generated-new
+
+# My generator Asana
+
+java -cp out/generators/my-codegen/target/my-codegen-openapi-generator-1.0.0.jar:./openapi-generator-cli.jar \
+  org.openapitools.codegen.OpenAPIGenerator generate -g my-codegen \
+  -i ../yoga-flow-mono/apps/yoga-flow-backend/openapi.yaml \
+  -o ../yoga-flow-mono/apps/yoga-flow-backend/src/api/generated
+
